@@ -1,4 +1,4 @@
-const canvas = document.getElementById('gameCanvas');
+/*const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const startButton = document.getElementById('startButton');
 const restartButton = document.getElementById('restartButton');
@@ -77,9 +77,9 @@ function startGame() {
     if (obstacleWorker) obstacleWorker.terminate();
     if (collisionWorker) collisionWorker.terminate();
 
-    birdWorker = new Worker('src/workers/birdWorker.js');
-    obstacleWorker = new Worker('src/workers/obstacleWorker.js');
-    collisionWorker = new Worker('src/workers/collisionWorker.js');
+    birdWorker = new Worker('src/js/workers/birdWorker.js');
+    obstacleWorker = new Worker('src/js/workers/obstacleWorker.js');
+    collisionWorker = new Worker('src/js/workers/collisionWorker.js');
 
     birdWorker.onmessage = function (e) {
         birdY = e.data;
@@ -114,4 +114,4 @@ function restartGame() {
 
 startButton.addEventListener('click', startGame);
 
-restartButton.addEventListener('click', restartGame);
+restartButton.addEventListener('click', restartGame);*/
