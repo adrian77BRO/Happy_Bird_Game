@@ -11,6 +11,15 @@ let gameStarted = false;
 let score = 0;
 let lastObstacleX = 500;
 
+const birdImg = new Image();
+birdImg.src = 'src/assets/bird.png';
+
+const obstacleImg = new Image();
+obstacleImg.src = 'src/assets/wall.jpg';
+
+const backgroundImg = new Image();
+backgroundImg.src = 'src/assets/field.jpg';
+
 document.addEventListener('keydown', function (event) {
     if (event.code === 'Space' && gameStarted) {
         birdWorker.postMessage('jump');
@@ -19,7 +28,7 @@ document.addEventListener('keydown', function (event) {
 
 function checkScore() {
     obstacles.forEach(obs => {
-        if (obs.x + 50 < 100 && !obs.scored) {
+        if (obs.x + 100 < 100 && !obs.scored) {
             score++;
             obs.scored = true;
         }
@@ -30,20 +39,22 @@ function render() {
     if (gameOver) {
         ctx.font = '48px sans-serif';
         ctx.fillStyle = 'red';
-        ctx.fillText('Game Over', 150, 300);
-        ctx.fillText('Puntaje: ' + score, 150, 360);
+        ctx.fillText('¡Perdiste! :(', 360, 225);
+        ctx.fillText('Puntaje: ' + score, 365, 275);
         restartButton.style.display = 'block';
         return;
     }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'yellow';
-    ctx.fillRect(100, birdY, 20, 20);
+    
+    ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
+
+    ctx.drawImage(birdImg, 100, birdY, 40, 40);
 
     ctx.fillStyle = 'green';
     obstacles.forEach(obs => {
-        ctx.fillRect(obs.x, 0, 50, obs.y - 100);
-        ctx.fillRect(obs.x, obs.y, 50, canvas.height - obs.y);
+        ctx.drawImage(obstacleImg, obs.x, 0, 70, obs.y - 125);
+        ctx.drawImage(obstacleImg, obs.x, obs.y, 70, canvas.height - obs.y);
     });
 
     ctx.font = '24px sans-serif';
