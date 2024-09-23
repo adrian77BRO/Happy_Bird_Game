@@ -1,0 +1,23 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+canvas {
+    border: 1px solid black;
+}
+#startButton, #restartButton {
+    padding: 10px 20px;
+    margin-top: 15px;
+    font-size: 24px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#restartButton {
+    display: none;
+}
